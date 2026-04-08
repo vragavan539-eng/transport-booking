@@ -1,0 +1,209 @@
+.transport-card {
+  transition: box-shadow 0.2s, transform 0.2s;
+  border: 1px solid var(--gray-100);
+}
+.transport-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.card-main {
+  display: grid;
+  grid-template-columns: 220px 1fr auto auto;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+}
+
+/* Operator */
+.card-operator { display: flex; align-items: center; gap: 12px; }
+
+.operator-logo {
+  width: 48px; height: 48px;
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.bus-logo { background: var(--bus-light); }
+.train-logo { background: var(--train-light); }
+.flight-logo { background: var(--flight-light); font-size: 20px; }
+
+.operator-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+.operator-sub { font-size: 12px; color: var(--gray-500); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+/* Journey */
+.card-journey {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+}
+
+.journey-time { text-align: center; }
+
+.time-big {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--font-head);
+  color: var(--gray-900);
+  line-height: 1.2;
+}
+.journey-city { font-size: 12px; color: var(--gray-500); font-weight: 500; }
+
+.journey-middle { flex: 1; text-align: center; min-width: 100px; }
+.journey-duration { font-size: 12px; color: var(--gray-500); display: block; margin-bottom: 6px; }
+.journey-line { display: flex; align-items: center; gap: 0; margin: 0 auto; max-width: 120px; }
+.journey-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-300); flex-shrink: 0; }
+.journey-track { flex: 1; height: 1.5px; background: var(--gray-300); }
+.journey-nonstop { font-size: 11px; color: var(--success); font-weight: 500; margin-top: 4px; display: block; }
+.journey-nonstop.has-stops { color: var(--warning); }
+
+/* Meta / class selectors */
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.seats-info { font-size: 12px; margin-top: 4px; }
+.seats-low { color: var(--danger); font-weight: 600; }
+.seats-ok { color: var(--gray-500); }
+
+.rating-num { font-size: 13px; font-weight: 600; color: var(--gray-700); margin-left: 4px; }
+
+.class-selector {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.class-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s;
+  min-width: 52px;
+}
+.class-btn:hover { border-color: var(--primary); background: var(--primary-light); }
+.class-btn.active { border-color: var(--primary); background: var(--primary-light); }
+
+.class-code { font-size: 12px; font-weight: 700; color: var(--primary); }
+.class-seats { font-size: 10px; color: var(--gray-400); margin-top: 2px; }
+
+/* Price & action */
+.card-price-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  min-width: 130px;
+}
+
+.price-block { text-align: right; }
+.price-main {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: var(--font-head);
+  color: var(--gray-900);
+}
+.price-per { font-size: 11px; color: var(--gray-400); }
+
+.expand-btn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: var(--primary);
+  cursor: pointer;
+  padding: 2px;
+  font-family: var(--font-body);
+}
+.expand-btn:hover { text-decoration: underline; }
+
+/* Expanded */
+.card-expanded { padding: 0 24px 20px; }
+
+.expanded-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.expanded-grid h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 10px;
+}
+
+.amenities-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.amenity-tag {
+  padding: 3px 10px;
+  background: var(--gray-100);
+  border-radius: 99px;
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+.policy-text { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+
+.stop-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 13px;
+  color: var(--gray-600);
+  border-bottom: 1px solid var(--gray-100);
+}
+.stop-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0; }
+.stop-time { margin-left: auto; color: var(--gray-400); }
+
+/* Class table */
+.class-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.class-table th { text-align: left; padding: 6px 8px; color: var(--gray-500); font-weight: 500; border-bottom: 1px solid var(--gray-100); }
+.class-table td { padding: 8px 8px; color: var(--gray-700); border-bottom: 1px solid var(--gray-100); }
+.class-table .sold-out td { color: var(--gray-300); text-decoration: line-through; }
+
+/* Days */
+.days-list { display: flex; gap: 6px; flex-wrap: wrap; }
+.day-pill { padding: 4px 10px; border-radius: 99px; font-size: 12px; font-weight: 500; }
+.day-active { background: var(--train-light); color: #065f46; }
+.day-inactive { background: var(--gray-100); color: var(--gray-400); }
+
+/* Cabin features */
+.cabin-detail { padding: 12px; background: var(--gray-50); border-radius: var(--radius-sm); }
+.cabin-features { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.cabin-features span { font-size: 13px; color: var(--gray-600); }
+
+@media (max-width: 900px) {
+  .card-main { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card-operator { grid-column: 1; }
+  .card-journey { grid-column: 2; }
+  .card-meta { grid-column: 1; align-items: flex-start; }
+  .card-price-action { grid-column: 2; }
+}
+
+@media (max-width: 600px) {
+  .card-main { grid-template-columns: 1fr; gap: 12px; padding: 16px; }
+  .card-price-action { align-items: flex-start; flex-direction: row; align-items: center; flex-wrap: wrap; }
+  .price-block { text-align: left; }
+}
