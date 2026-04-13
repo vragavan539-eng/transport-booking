@@ -223,5 +223,4 @@ const seed = async () => {
   }
 };
 module.exports = { busTemplates, trainTemplates, flightTemplates };
-
-seed();
+// seed(); // --- IGNORE ---
