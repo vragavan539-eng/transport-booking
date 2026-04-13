@@ -16,8 +16,7 @@ exports.searchTrains = async (req, res) => {
         { from: { $regex: from, $options: 'i' } },
         { fromCode: { $regex: from, $options: 'i' } }
       ],
-      date: { $gte: searchDate, $lt: nextDay },
-      isActive: true
+      date: { $gte: searchDate, $lt: nextDay }
     };
 
     let trains = await Train.find(query);

@@ -16,8 +16,7 @@ exports.searchFlights = async (req, res) => {
         { from: { $regex: from, $options: 'i' } },
         { fromCode: { $regex: from, $options: 'i' } }
       ],
-      date: { $gte: searchDate, $lt: nextDay },
-      isActive: true
+      date: { $gte: searchDate, $lt: nextDay }
     };
 
     if (airline) query.airline = { $regex: airline, $options: 'i' };

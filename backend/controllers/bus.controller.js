@@ -18,7 +18,6 @@ exports.searchBuses = async (req, res) => {
       from: { $regex: from, $options: 'i' },
       to: { $regex: to, $options: 'i' },
       date: { $gte: searchDate, $lt: nextDay },
-      isActive: true,
       availableSeats: { $gt: 0 }
     };
 
