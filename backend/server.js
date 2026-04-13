@@ -38,6 +38,7 @@ app.use('/api/trains', require('./routes/train.routes'));
 app.use('/api/flights', require('./routes/flight.routes'));
 app.use('/api/bookings', require('./routes/booking.routes'));
 app.use('/api/users', require('./routes/user.routes'));
+app.use('/api/seed', require('./routes/seed.routes'));
 
 // Health check
 app.get('/api/health', (req, res) => {

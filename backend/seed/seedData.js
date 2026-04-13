@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-dotenv.config({ path: '../.env' });
+dotenv.config(); // இதுவே போதும் - backend folder-ல இருந்து run பண்றோம்
 
 const Bus = require('../models/Bus.model');
 const Train = require('../models/Train.model');
@@ -222,5 +222,6 @@ const seed = async () => {
     process.exit(1);
   }
 };
+module.exports = { busTemplates, trainTemplates, flightTemplates };
 
 seed();
