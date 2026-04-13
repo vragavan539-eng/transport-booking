@@ -15,9 +15,19 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: '*',
-  credentials: false
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, curl, Postman)
+    if (!origin) return callback(null, true);
+    return callback(null, true); // Allow ALL origins
+  },
+  credentials: false,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
+
+// Handle preflight requests globally
+app.options('*', cors());
+
 app.use(express.json());
 app.use(morgan('dev'));
 
