@@ -20,18 +20,22 @@ const d = (offset) => {
   return dt;
 };
 
-const buses = [
-  { busNumber: 'BUS001', busName: 'Chennai Express', operator: 'TNSTC', busType: 'Volvo AC', from: 'Chennai', to: 'Bangalore', departureTime: '06:00', arrivalTime: '11:30', duration: '5h 30m', totalSeats: 45, availableSeats: 30, price: 650, amenities: ['AC', 'WiFi', 'Charging Point', 'Water Bottle'], rating: 4.5, date: d(1) },
-  { busNumber: 'BUS002', busName: 'Coimbatore Night Rider', operator: 'KPN Travels', busType: 'AC Sleeper', from: 'Chennai', to: 'Coimbatore', departureTime: '22:00', arrivalTime: '05:00', duration: '7h', totalSeats: 36, availableSeats: 20, price: 850, amenities: ['AC', 'Sleeper', 'Blanket', 'Charging Point'], rating: 4.3, date: d(1) },
-  { busNumber: 'BUS003', busName: 'Madurai Link', operator: 'SRM Travels', busType: 'AC Seater', from: 'Chennai', to: 'Madurai', departureTime: '08:00', arrivalTime: '14:00', duration: '6h', totalSeats: 50, availableSeats: 35, price: 500, amenities: ['AC', 'TV', 'Charging Point'], rating: 4.1, date: d(1) },
-  { busNumber: 'BUS004', busName: 'Trichy Swift', operator: 'SETC', busType: 'Seater', from: 'Chennai', to: 'Trichy', departureTime: '10:00', arrivalTime: '15:30', duration: '5h 30m', totalSeats: 50, availableSeats: 40, price: 280, amenities: ['Fan', 'Charging Point'], rating: 3.8, date: d(1) },
-  { busNumber: 'BUS005', busName: 'Bangalore Premium', operator: 'Orange Travels', busType: 'Volvo AC', from: 'Chennai', to: 'Bangalore', departureTime: '14:00', arrivalTime: '20:00', duration: '6h', totalSeats: 45, availableSeats: 15, price: 750, amenities: ['AC', 'WiFi', 'USB Charging', 'Snacks'], rating: 4.7, date: d(2) },
-  { busNumber: 'BUS006', busName: 'Hyderabad Express', operator: 'VRL Travels', busType: 'AC Sleeper', from: 'Bangalore', to: 'Hyderabad', departureTime: '20:00', arrivalTime: '05:00', duration: '9h', totalSeats: 36, availableSeats: 25, price: 950, amenities: ['AC', 'Sleeper', 'Blanket', 'Pillow'], rating: 4.4, date: d(1) },
-  { busNumber: 'BUS007', busName: 'Pune Rider', operator: 'Neeta Travels', busType: 'Volvo AC', from: 'Mumbai', to: 'Pune', departureTime: '07:00', arrivalTime: '11:00', duration: '4h', totalSeats: 45, availableSeats: 28, price: 400, amenities: ['AC', 'WiFi', 'Water'], rating: 4.2, date: d(1) },
-  { busNumber: 'BUS008', busName: 'Goa Beach Express', operator: 'Kadamba Transport', busType: 'AC Seater', from: 'Mumbai', to: 'Goa', departureTime: '18:00', arrivalTime: '08:00', duration: '14h', totalSeats: 50, availableSeats: 18, price: 1100, amenities: ['AC', 'Sleeper', 'USB', 'Reading Light'], rating: 4.6, date: d(2) },
+const busTemplates = [
+  { busNumber: 'BUS001', busName: 'Chennai Express', operator: 'TNSTC', busType: 'Volvo AC', from: 'Chennai', to: 'Bangalore', departureTime: '06:00', arrivalTime: '11:30', duration: '5h 30m', totalSeats: 45, availableSeats: 30, price: 650, amenities: ['AC', 'WiFi', 'Charging Point', 'Water Bottle'], rating: 4.5 },
+  { busNumber: 'BUS002', busName: 'Coimbatore Night Rider', operator: 'KPN Travels', busType: 'AC Sleeper', from: 'Chennai', to: 'Coimbatore', departureTime: '22:00', arrivalTime: '05:00', duration: '7h', totalSeats: 36, availableSeats: 20, price: 850, amenities: ['AC', 'Sleeper', 'Blanket', 'Charging Point'], rating: 4.3 },
+  { busNumber: 'BUS003', busName: 'Madurai Link', operator: 'SRM Travels', busType: 'AC Seater', from: 'Chennai', to: 'Madurai', departureTime: '08:00', arrivalTime: '14:00', duration: '6h', totalSeats: 50, availableSeats: 35, price: 500, amenities: ['AC', 'TV', 'Charging Point'], rating: 4.1 },
+  { busNumber: 'BUS004', busName: 'Trichy Swift', operator: 'SETC', busType: 'Seater', from: 'Chennai', to: 'Trichy', departureTime: '10:00', arrivalTime: '15:30', duration: '5h 30m', totalSeats: 50, availableSeats: 40, price: 280, amenities: ['Fan', 'Charging Point'], rating: 3.8 },
+  { busNumber: 'BUS005', busName: 'Bangalore Premium', operator: 'Orange Travels', busType: 'Volvo AC', from: 'Chennai', to: 'Bangalore', departureTime: '14:00', arrivalTime: '20:00', duration: '6h', totalSeats: 45, availableSeats: 15, price: 750, amenities: ['AC', 'WiFi', 'USB Charging', 'Snacks'], rating: 4.7 },
+  { busNumber: 'BUS006', busName: 'Hyderabad Express', operator: 'VRL Travels', busType: 'AC Sleeper', from: 'Bangalore', to: 'Hyderabad', departureTime: '20:00', arrivalTime: '05:00', duration: '9h', totalSeats: 36, availableSeats: 25, price: 950, amenities: ['AC', 'Sleeper', 'Blanket', 'Pillow'], rating: 4.4 },
+  { busNumber: 'BUS007', busName: 'Pune Rider', operator: 'Neeta Travels', busType: 'Volvo AC', from: 'Mumbai', to: 'Pune', departureTime: '07:00', arrivalTime: '11:00', duration: '4h', totalSeats: 45, availableSeats: 28, price: 400, amenities: ['AC', 'WiFi', 'Water'], rating: 4.2 },
+  { busNumber: 'BUS008', busName: 'Goa Beach Express', operator: 'Kadamba Transport', busType: 'AC Seater', from: 'Mumbai', to: 'Goa', departureTime: '18:00', arrivalTime: '08:00', duration: '14h', totalSeats: 50, availableSeats: 18, price: 1100, amenities: ['AC', 'Sleeper', 'USB', 'Reading Light'], rating: 4.6 },
+  { busNumber: 'BUS009', busName: 'Salem Express', operator: 'TNSTC', busType: 'AC Seater', from: 'Chennai', to: 'Salem', departureTime: '09:00', arrivalTime: '13:30', duration: '4h 30m', totalSeats: 50, availableSeats: 30, price: 350, amenities: ['AC', 'Charging Point'], rating: 4.0 },
+  { busNumber: 'BUS010', busName: 'Vellore Link', operator: 'SRM Travels', busType: 'Seater', from: 'Chennai', to: 'Vellore', departureTime: '07:30', arrivalTime: '10:30', duration: '3h', totalSeats: 50, availableSeats: 40, price: 200, amenities: ['Fan', 'Charging Point'], rating: 3.9 },
+  { busNumber: 'BUS011', busName: 'Mysore Express', operator: 'KSRTC', busType: 'Volvo AC', from: 'Bangalore', to: 'Mysore', departureTime: '06:00', arrivalTime: '09:30', duration: '3h 30m', totalSeats: 45, availableSeats: 25, price: 300, amenities: ['AC', 'WiFi'], rating: 4.3 },
+  { busNumber: 'BUS012', busName: 'Pondicherry Rider', operator: 'TNSTC', busType: 'AC Seater', from: 'Chennai', to: 'Pondicherry', departureTime: '08:30', arrivalTime: '12:00', duration: '3h 30m', totalSeats: 50, availableSeats: 35, price: 250, amenities: ['AC', 'Charging Point'], rating: 4.1 },
 ];
 
-const trains = [
+const trainTemplates = [
   {
     trainNumber: '12671', trainName: 'Nilagiri Express', from: 'Chennai', fromCode: 'MAS', to: 'Coimbatore', toCode: 'CBE',
     departureTime: '21:10', arrivalTime: '06:45', duration: '9h 35m', trainType: 'Express',
@@ -41,7 +45,7 @@ const trains = [
       { className: '2nd AC', classCode: '2A', totalSeats: 100, availableSeats: 30, price: 1200 },
       { className: '1st AC', classCode: '1A', totalSeats: 24, availableSeats: 8, price: 2200 }
     ],
-    runningDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], rating: 4.2, date: d(1)
+    runningDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], rating: 4.2
   },
   {
     trainNumber: '12007', trainName: 'Chennai Shatabdi', from: 'Chennai', fromCode: 'MAS', to: 'Bangalore', toCode: 'SBC',
@@ -50,7 +54,7 @@ const trains = [
       { className: 'Chair Car', classCode: 'CC', totalSeats: 400, availableSeats: 80, price: 650 },
       { className: 'Executive Chair', classCode: 'EC', totalSeats: 60, availableSeats: 20, price: 1250 }
     ],
-    runningDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], rating: 4.6, date: d(1)
+    runningDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], rating: 4.6
   },
   {
     trainNumber: '22691', trainName: 'Rajdhani Express', from: 'Bangalore', fromCode: 'SBC', to: 'Delhi', toCode: 'NDLS',
@@ -60,7 +64,7 @@ const trains = [
       { className: '2nd AC', classCode: '2A', totalSeats: 150, availableSeats: 40, price: 3100 },
       { className: '1st AC', classCode: '1A', totalSeats: 36, availableSeats: 10, price: 5200 }
     ],
-    runningDays: ['Mon', 'Wed', 'Fri', 'Sun'], rating: 4.7, date: d(1)
+    runningDays: ['Mon', 'Wed', 'Fri', 'Sun'], rating: 4.7
   },
   {
     trainNumber: '20901', trainName: 'Vande Bharat Express', from: 'Chennai', fromCode: 'MAS', to: 'Mysore', toCode: 'MYS',
@@ -69,7 +73,7 @@ const trains = [
       { className: 'Chair Car', classCode: 'CC', totalSeats: 450, availableSeats: 110, price: 1050 },
       { className: 'Executive Chair', classCode: 'EC', totalSeats: 52, availableSeats: 15, price: 2050 }
     ],
-    runningDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], rating: 4.8, date: d(1)
+    runningDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], rating: 4.8
   },
   {
     trainNumber: '12027', trainName: 'Chennai Mail', from: 'Mumbai', fromCode: 'CSTM', to: 'Chennai', toCode: 'MAS',
@@ -79,11 +83,20 @@ const trains = [
       { className: '3rd AC', classCode: '3A', totalSeats: 250, availableSeats: 90, price: 1550 },
       { className: '2nd AC', classCode: '2A', totalSeats: 120, availableSeats: 35, price: 2200 }
     ],
-    runningDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], rating: 4.0, date: d(2)
-  }
+    runningDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], rating: 4.0
+  },
+  {
+    trainNumber: '16057', trainName: 'Saptagiri Express', from: 'Chennai', fromCode: 'MAS', to: 'Tirupati', toCode: 'TPTY',
+    departureTime: '06:10', arrivalTime: '10:05', duration: '3h 55m', trainType: 'Express',
+    classes: [
+      { className: 'Sleeper Class', classCode: 'SL', totalSeats: 500, availableSeats: 150, price: 180 },
+      { className: '3rd AC', classCode: '3A', totalSeats: 200, availableSeats: 70, price: 480 }
+    ],
+    runningDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], rating: 4.1
+  },
 ];
 
-const flights = [
+const flightTemplates = [
   {
     flightNumber: 'AI202', airline: 'Air India', airlineCode: 'AI', from: 'Chennai', fromCode: 'MAA', to: 'Delhi', toCode: 'DEL',
     departureTime: '06:15', arrivalTime: '09:00', duration: '2h 45m', stops: 0,
@@ -91,7 +104,7 @@ const flights = [
       { className: 'Economy', classCode: 'Economy', totalSeats: 150, availableSeats: 60, price: 4500, baggage: '25kg', cabinBaggage: '7kg', meal: true, refundable: false },
       { className: 'Business', classCode: 'Business', totalSeats: 30, availableSeats: 10, price: 14000, baggage: '35kg', cabinBaggage: '10kg', meal: true, refundable: true }
     ],
-    aircraft: 'Airbus A320', rating: 4.2, date: d(1)
+    aircraft: 'Airbus A320', rating: 4.2
   },
   {
     flightNumber: 'IN605', airline: 'IndiGo', airlineCode: '6E', from: 'Chennai', fromCode: 'MAA', to: 'Delhi', toCode: 'DEL',
@@ -99,7 +112,7 @@ const flights = [
     cabinClasses: [
       { className: 'Economy', classCode: 'Economy', totalSeats: 180, availableSeats: 90, price: 3800, baggage: '20kg', cabinBaggage: '7kg', meal: false, refundable: false }
     ],
-    aircraft: 'Airbus A320neo', rating: 4.0, date: d(1)
+    aircraft: 'Airbus A320neo', rating: 4.0
   },
   {
     flightNumber: 'SG415', airline: 'SpiceJet', airlineCode: 'SG', from: 'Chennai', fromCode: 'MAA', to: 'Mumbai', toCode: 'BOM',
@@ -108,17 +121,16 @@ const flights = [
       { className: 'Economy', classCode: 'Economy', totalSeats: 180, availableSeats: 70, price: 3200, baggage: '20kg', cabinBaggage: '7kg', meal: false, refundable: false },
       { className: 'Business', classCode: 'Business', totalSeats: 12, availableSeats: 5, price: 9800, baggage: '30kg', cabinBaggage: '10kg', meal: true, refundable: true }
     ],
-    aircraft: 'Boeing 737-800', rating: 3.9, date: d(1)
+    aircraft: 'Boeing 737-800', rating: 3.9
   },
   {
     flightNumber: 'UK818', airline: 'Vistara', airlineCode: 'UK', from: 'Mumbai', fromCode: 'BOM', to: 'Bangalore', toCode: 'BLR',
     departureTime: '14:00', arrivalTime: '15:30', duration: '1h 30m', stops: 0,
     cabinClasses: [
       { className: 'Economy', classCode: 'Economy', totalSeats: 140, availableSeats: 55, price: 3500, baggage: '20kg', cabinBaggage: '7kg', meal: true, refundable: false },
-      { className: 'Business', classCode: 'Business', totalSeats: 16, availableSeats: 6, price: 12500, baggage: '35kg', cabinBaggage: '10kg', meal: true, refundable: true },
-      { className: 'First', classCode: 'First', totalSeats: 4, availableSeats: 2, price: 28000, baggage: '40kg', cabinBaggage: '10kg', meal: true, refundable: true }
+      { className: 'Business', classCode: 'Business', totalSeats: 16, availableSeats: 6, price: 12500, baggage: '35kg', cabinBaggage: '10kg', meal: true, refundable: true }
     ],
-    aircraft: 'Airbus A321', rating: 4.7, date: d(1)
+    aircraft: 'Airbus A321', rating: 4.7
   },
   {
     flightNumber: 'AI440', airline: 'Air India', airlineCode: 'AI', from: 'Delhi', fromCode: 'DEL', to: 'Bangalore', toCode: 'BLR',
@@ -127,7 +139,7 @@ const flights = [
       { className: 'Economy', classCode: 'Economy', totalSeats: 150, availableSeats: 80, price: 4200, baggage: '25kg', cabinBaggage: '7kg', meal: true, refundable: false },
       { className: 'Business', classCode: 'Business', totalSeats: 24, availableSeats: 8, price: 13500, baggage: '35kg', cabinBaggage: '10kg', meal: true, refundable: true }
     ],
-    aircraft: 'Boeing 787', rating: 4.4, date: d(2)
+    aircraft: 'Boeing 787', rating: 4.4
   },
   {
     flightNumber: 'IN219', airline: 'IndiGo', airlineCode: '6E', from: 'Bangalore', fromCode: 'BLR', to: 'Hyderabad', toCode: 'HYD',
@@ -135,8 +147,25 @@ const flights = [
     cabinClasses: [
       { className: 'Economy', classCode: 'Economy', totalSeats: 180, availableSeats: 100, price: 2200, baggage: '20kg', cabinBaggage: '7kg', meal: false, refundable: false }
     ],
-    aircraft: 'Airbus A320', rating: 4.1, date: d(1)
-  }
+    aircraft: 'Airbus A320', rating: 4.1
+  },
+  {
+    flightNumber: 'AI550', airline: 'Air India', airlineCode: 'AI', from: 'Chennai', fromCode: 'MAA', to: 'Mumbai', toCode: 'BOM',
+    departureTime: '09:00', arrivalTime: '11:10', duration: '2h 10m', stops: 0,
+    cabinClasses: [
+      { className: 'Economy', classCode: 'Economy', totalSeats: 150, availableSeats: 75, price: 3900, baggage: '25kg', cabinBaggage: '7kg', meal: true, refundable: false },
+      { className: 'Business', classCode: 'Business', totalSeats: 20, availableSeats: 8, price: 11000, baggage: '35kg', cabinBaggage: '10kg', meal: true, refundable: true }
+    ],
+    aircraft: 'Airbus A319', rating: 4.3
+  },
+  {
+    flightNumber: 'IN301', airline: 'IndiGo', airlineCode: '6E', from: 'Chennai', fromCode: 'MAA', to: 'Bangalore', toCode: 'BLR',
+    departureTime: '07:00', arrivalTime: '08:10', duration: '1h 10m', stops: 0,
+    cabinClasses: [
+      { className: 'Economy', classCode: 'Economy', totalSeats: 180, availableSeats: 95, price: 2500, baggage: '20kg', cabinBaggage: '7kg', meal: false, refundable: false }
+    ],
+    aircraft: 'Airbus A320neo', rating: 4.2
+  },
 ];
 
 const seed = async () => {
@@ -147,20 +176,43 @@ const seed = async () => {
     await Flight.deleteMany({});
     console.log('Cleared existing data');
 
+    // Seed buses for next 30 days — unique busNumber per day
+    const buses = [];
+    for (let i = 0; i <= 30; i++) {
+      busTemplates.forEach(template => {
+        buses.push({ ...template, busNumber: `${template.busNumber}-D${i}`, date: d(i) });
+      });
+    }
     await Bus.insertMany(buses);
-    console.log(`✅ ${buses.length} buses seeded`);
+    console.log(`✅ ${buses.length} buses seeded (${busTemplates.length} routes × 31 days)`);
 
+    // Seed trains for next 30 days — unique trainNumber per day
+    const trains = [];
+    for (let i = 0; i <= 30; i++) {
+      trainTemplates.forEach(template => {
+        trains.push({ ...template, trainNumber: `${template.trainNumber}-D${i}`, date: d(i) });
+      });
+    }
     await Train.insertMany(trains);
-    console.log(`✅ ${trains.length} trains seeded`);
+    console.log(`✅ ${trains.length} trains seeded (${trainTemplates.length} routes × 31 days)`);
 
+    // Seed flights for next 30 days — unique flightNumber per day
+    const flights = [];
+    for (let i = 0; i <= 30; i++) {
+      flightTemplates.forEach(template => {
+        flights.push({ ...template, flightNumber: `${template.flightNumber}-D${i}`, date: d(i) });
+      });
+    }
     await Flight.insertMany(flights);
-    console.log(`✅ ${flights.length} flights seeded`);
+    console.log(`✅ ${flights.length} flights seeded (${flightTemplates.length} routes × 31 days)`);
 
     // Create admin user
     const adminExists = await User.findOne({ email: 'admin@transport.com' });
     if (!adminExists) {
       await User.create({ name: 'Admin', email: 'admin@transport.com', password: 'admin123', role: 'admin' });
       console.log('✅ Admin user created: admin@transport.com / admin123');
+    } else {
+      console.log('✅ Admin user already exists');
     }
 
     console.log('\n🎉 Seeding complete!');
