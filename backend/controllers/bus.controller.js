@@ -10,14 +10,14 @@ exports.searchBuses = async (req, res) => {
       return res.status(400).json({ success: false, message: 'from, to, and date are required' });
     }
 
-    const searchDate = new Date(date);
-    const nextDay = new Date(searchDate);
-    nextDay.setDate(nextDay.getDate() + 1);
+    // ✅ IST Timezone Fix - UTC offset +05:30
+    const searchDate = new Date(date + 'T00:00:00.000+05:30');
+    const nextDay = new Date(date + 'T23:59:59.999+05:30');
 
     let query = {
       from: { $regex: from, $options: 'i' },
       to: { $regex: to, $options: 'i' },
-      date: { $gte: searchDate, $lt: nextDay },
+      date: { $gte: searchDate, $lte: nextDay },
       availableSeats: { $gt: 0 }
     };
 

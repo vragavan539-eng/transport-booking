@@ -1,22 +1,25 @@
 const Train = require('../models/Train.model');
 
+// @desc    Search trains
+// @route   GET /api/trains/search
 exports.searchTrains = async (req, res) => {
   try {
     const { from, to, date, classCode, sort } = req.query;
+
     if (!from || !to || !date) {
       return res.status(400).json({ success: false, message: 'from, to, and date are required' });
     }
 
-    const searchDate = new Date(date);
-    const nextDay = new Date(searchDate);
-    nextDay.setDate(nextDay.getDate() + 1);
+    // ✅ IST Timezone Fix - UTC offset +05:30
+    const searchDate = new Date(date + 'T00:00:00.000+05:30');
+    const nextDay = new Date(date + 'T23:59:59.999+05:30');
 
     let query = {
       $or: [
         { from: { $regex: from, $options: 'i' } },
         { fromCode: { $regex: from, $options: 'i' } }
       ],
-      date: { $gte: searchDate, $lt: nextDay }
+      date: { $gte: searchDate, $lte: nextDay }
     };
 
     let trains = await Train.find(query);
@@ -44,6 +47,8 @@ exports.searchTrains = async (req, res) => {
   }
 };
 
+// @desc    Get train by ID
+// @route   GET /api/trains/:id
 exports.getTrainById = async (req, res) => {
   try {
     const train = await Train.findById(req.params.id);
@@ -54,6 +59,8 @@ exports.getTrainById = async (req, res) => {
   }
 };
 
+// @desc    Get all trains (admin)
+// @route   GET /api/trains
 exports.getAllTrains = async (req, res) => {
   try {
     const trains = await Train.find({});
@@ -63,6 +70,8 @@ exports.getAllTrains = async (req, res) => {
   }
 };
 
+// @desc    Create train (admin)
+// @route   POST /api/trains
 exports.createTrain = async (req, res) => {
   try {
     const train = await Train.create(req.body);
@@ -72,6 +81,8 @@ exports.createTrain = async (req, res) => {
   }
 };
 
+// @desc    Update train (admin)
+// @route   PUT /api/trains/:id
 exports.updateTrain = async (req, res) => {
   try {
     const train = await Train.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -82,6 +93,8 @@ exports.updateTrain = async (req, res) => {
   }
 };
 
+// @desc    Delete train (admin)
+// @route   DELETE /api/trains/:id
 exports.deleteTrain = async (req, res) => {
   try {
     await Train.findByIdAndDelete(req.params.id);

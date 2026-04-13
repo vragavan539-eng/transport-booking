@@ -1,28 +1,32 @@
 const Flight = require('../models/Flight.model');
 
+// @desc    Search flights
+// @route   GET /api/flights/search
 exports.searchFlights = async (req, res) => {
   try {
     const { from, to, date, classCode, stops, airline, sort } = req.query;
+
     if (!from || !to || !date) {
       return res.status(400).json({ success: false, message: 'from, to, and date are required' });
     }
 
-    const searchDate = new Date(date);
-    const nextDay = new Date(searchDate);
-    nextDay.setDate(nextDay.getDate() + 1);
+    // ✅ IST Timezone Fix - UTC offset +05:30
+    const searchDate = new Date(date + 'T00:00:00.000+05:30');
+    const nextDay = new Date(date + 'T23:59:59.999+05:30');
 
     let query = {
       $or: [
         { from: { $regex: from, $options: 'i' } },
         { fromCode: { $regex: from, $options: 'i' } }
       ],
-      date: { $gte: searchDate, $lt: nextDay }
+      date: { $gte: searchDate, $lte: nextDay }
     };
 
     if (airline) query.airline = { $regex: airline, $options: 'i' };
     if (stops !== undefined) query.stops = Number(stops);
 
     let flights = await Flight.find(query);
+
     flights = flights.filter(f =>
       f.to.toLowerCase().includes(to.toLowerCase()) ||
       f.toCode.toLowerCase().includes(to.toLowerCase())
@@ -48,6 +52,8 @@ exports.searchFlights = async (req, res) => {
   }
 };
 
+// @desc    Get flight by ID
+// @route   GET /api/flights/:id
 exports.getFlightById = async (req, res) => {
   try {
     const flight = await Flight.findById(req.params.id);
@@ -58,6 +64,8 @@ exports.getFlightById = async (req, res) => {
   }
 };
 
+// @desc    Get all flights (admin)
+// @route   GET /api/flights
 exports.getAllFlights = async (req, res) => {
   try {
     const flights = await Flight.find({});
@@ -67,6 +75,8 @@ exports.getAllFlights = async (req, res) => {
   }
 };
 
+// @desc    Create flight (admin)
+// @route   POST /api/flights
 exports.createFlight = async (req, res) => {
   try {
     const flight = await Flight.create(req.body);
@@ -76,6 +86,8 @@ exports.createFlight = async (req, res) => {
   }
 };
 
+// @desc    Update flight (admin)
+// @route   PUT /api/flights/:id
 exports.updateFlight = async (req, res) => {
   try {
     const flight = await Flight.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -86,6 +98,8 @@ exports.updateFlight = async (req, res) => {
   }
 };
 
+// @desc    Delete flight (admin)
+// @route   DELETE /api/flights/:id
 exports.deleteFlight = async (req, res) => {
   try {
     await Flight.findByIdAndDelete(req.params.id);
